@@ -1,0 +1,21 @@
+﻿{
+  "DbOption": {
+    "DbType": "Sqlite",
+    "ConnectionString": ""
+  },
+  "Auth": {
+    "AuthType": "AzureAD",
+    "TenantId": "your-tenant-id",
+    "ClientId": "your-client-id",
+    "ClientSecret": "your-client-secret"
+  },
+  "Endpoints": {
+    "GetMemberDetails": {
+      "HttpVerb": "GET",
+      "Url": "",
+      "Headers": {
+        "SubscriptionKey": ""
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+# Top-level EditorConfig
+root = true
+
+[*.cs]
+
+#############################
+# INTERFACE NAMING RULE
+#############################
+
+# Rule definition
+dotnet_naming_rule.interfaces_should_be_prefixed_with_i.severity = warning
+dotnet_naming_rule.interfaces_should_be_prefixed_with_i.symbols  = interfaces
+dotnet_naming_rule.interfaces_should_be_prefixed_with_i.style    = interface_prefix_style
+
+# Symbol group selecting all interfaces
+dotnet_naming_symbols.interfaces.applicable_kinds = interface
+dotnet_naming_symbols.interfaces.applicable_accessibilities = *
+dotnet_naming_symbols.interfaces.required_modifiers = 
+
+# Style: Must start with I and then PascalCase
+dotnet_naming_style.interface_prefix_style.required_prefix = I
+dotnet_naming_style.interface_prefix_style.capitalization = pascal_case
+
+#############################
+# Require file-scoped namespaces
+#############################
+
+# Use file-scoped (namespace X;) — no braces
+csharp_style_namespace_declarations = file_scoped:warning
+csharp_style_expression_bodied_local_functions = false:silent
+
+[*.{cs,vb}]
+dotnet_style_null_propagation = true:suggestion
+dotnet_style_coalesce_expression = true:suggestion
+dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggestion
+dotnet_style_prefer_auto_properties = true:silent
+dotnet_style_object_initializer = true:suggestion
+dotnet_style_collection_initializer = true:suggestion
+dotnet_style_prefer_simplified_boolean_expressions = true:suggestion
+dotnet_style_prefer_conditional_expression_over_assignment = true:silent
+dotnet_style_prefer_conditional_expression_over_return = true:silent
+dotnet_style_explicit_tuple_names = true:suggestion
