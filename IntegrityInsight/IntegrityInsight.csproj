@@ -23,7 +23,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="config.json">
+	  <None Update="qa.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="dev.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>

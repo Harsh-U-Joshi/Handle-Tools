@@ -1,6 +1,5 @@
 ﻿using IntegrityInsight.Application.Common;
 using IntegrityInsight.Infrastructure.Implementations.Services;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
 namespace IntegrityInsight.Application.Contracts.Services;
@@ -34,8 +33,7 @@ public class ConfigDrivenRestClient : IConfigDrivenRestClient
     {
         var endpoint = IsExists(endpointName);
 
-        var request = new HttpRequestMessage(
-            new HttpMethod(endpoint.HttpVerb), endpoint.Url);
+        var request = new HttpRequestMessage(new HttpMethod(endpoint.HttpVerb), endpoint.Url);
 
         foreach (var header in endpoint.Headers)
         {
@@ -46,16 +44,28 @@ public class ConfigDrivenRestClient : IConfigDrivenRestClient
         return await _restService.SendAsync(request, ct);
     }
 
-    public async Task<HttpResponseMessage?> ExecuteAsync(
-        string endpointName,
-        IDictionary<string, object?> routeParams,
-        CancellationToken ct)
+    public async Task<HttpResponseMessage?> ExecuteAsync(string endpointName, IDictionary<string, object?>? routeParams, CancellationToken ct)
     {
         var endpoint = IsExists(endpointName);
 
         var url = UrlTemplateResolver.Resolve(endpoint.Url, routeParams);
 
         return await ExecuteAsync(url, ct);
+    }
+
+    public async Task<HttpResponseMessage?> ExecuteAsync(string endpointName, HttpRequestMessage request, CancellationToken ct)
+    {
+        var endpoint = IsExists(endpointName);
+
+        request.Method = new HttpMethod(endpoint.HttpVerb);
+
+        foreach (var header in endpoint.Headers)
+        {
+            if (!string.IsNullOrWhiteSpace(header.Value))
+                request.Headers.TryAddWithoutValidation(header.Key, header.Value);
+        }
+
+        return await _restService.SendAsync(request, ct);
     }
 }
 

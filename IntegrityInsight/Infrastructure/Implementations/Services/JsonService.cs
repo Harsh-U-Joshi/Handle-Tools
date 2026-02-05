@@ -5,22 +5,16 @@ using System.Text.Json;
 
 namespace IntegrityInsight.Infrastructure.Implementations.Services;
 
-public class JsonService : IJsonService
+public class JsonDiffComparator : IDataComparator
 {
-    public T? Deserialize<T>(string jsonString)
+    public JToken? Compare<T>(T source, T target, JsonSerializerOptions? options = default)
     {
-        return Deserialize<T>(jsonString, default);
-    }
+        var sourceStr = JsonSerializer.Serialize(source, options);
 
-    public T? Deserialize<T>(string jsonString, JsonSerializerOptions? options)
-    {
-        return JsonSerializer.Deserialize<T>(jsonString, options);
-    }
+        var targetStr = JsonSerializer.Serialize(target, options);
 
-    public JToken? Difference(string? left, string? right)
-    {
         var jdp = new JsonDiffPatch();
 
-        return jdp.Diff(left, right);
+        return jdp.Diff(sourceStr, targetStr);
     }
 }

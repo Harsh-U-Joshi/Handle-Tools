@@ -3,11 +3,7 @@ using System.Text.Json;
 
 namespace IntegrityInsight.Application.Contracts.Services;
 
-public interface IJsonService
+public interface IDataComparator
 {
-    T? Deserialize<T>(string jsonString);
-
-    T? Deserialize<T>(string jsonString, JsonSerializerOptions? options);
-
-    JToken? Difference(string? left, string? right);
+    JToken? Compare<T>(T source, T target, JsonSerializerOptions? options = default);
 }

@@ -1,0 +1,21 @@
+﻿{
+  "DbOption": {
+    "DbType": "Sqlite",
+    "ConnectionString": ""
+  },
+  "Auth": {
+    "AuthType": "AzureAD",
+    "TenantId": "your-tenant-id",
+    "ClientId": "your-client-id",
+    "ClientSecret": "your-client-secret"
+  },
+  "Endpoints": {
+    "GetMemberDemographicTestCase": {
+      "HttpVerb": "GET",
+      "Url": "https://mocki.io/v1/a18c4408-ed10-4750-aa02-fa2894505adc",
+      "Headers": {
+        "SubscriptionKey": ""
+      }
+    }
+  }
+}
