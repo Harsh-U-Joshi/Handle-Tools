@@ -1,3 +1,4 @@
+https://learn.microsoft.com/en-gb/sql/connect/ado-net/sql-server-data-type-mappings?view=sql-server-ver17
 public static string GeneratePocoFromDataTable(DataTable table, string className)
 {
     var sb = new StringBuilder();
